@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}Review application — CareerPilot AI{% endblock %}
+{% block content %}
+<div class="review-head"><a class="back-link" href="{{ url_for('dashboard') }}">← Workspace</a><div class="review-title"><div><span class="eyebrow">REVIEW & REFINE</span><h1>Your tailored application</h1><p class="muted">{{ doc.country }}{% if doc.job_title %} · {{ doc.job_title }}{% endif %}</p></div><span class="status-pill"><span class="dot"></span> Saved draft</span></div></div>
+<div class="insights-panel"><div class="insights-icon">✦</div><div><b>Match insights & country notes</b><p>{{ doc.match_notes }}</p></div></div>
+<form method="post" class="editor-form"><label>Application name<input name="title" value="{{ doc.title }}" maxlength="160"></label>
+<div class="editor-grid"><section class="editor-panel"><div class="editor-top"><div><span class="doc-icon">CV</span><h2>Tailored CV</h2></div><div class="download-links"><a href="{{ url_for('download_document', doc_id=doc.id, kind='cv', fmt='pdf') }}">PDF ↓</a><a href="{{ url_for('download_document', doc_id=doc.id, kind='cv', fmt='docx') }}">DOCX ↓</a></div></div><textarea name="cv_text" rows="30" required>{{ doc.cv_text }}</textarea><small>Edit directly here. Keep dates, credentials, and claims accurate.</small></section>
+<section class="editor-panel"><div class="editor-top"><div><span class="doc-icon cover">✉</span><h2>Cover letter</h2></div><div class="download-links"><a href="{{ url_for('download_document', doc_id=doc.id, kind='cover', fmt='pdf') }}">PDF ↓</a><a href="{{ url_for('download_document', doc_id=doc.id, kind='cover', fmt='docx') }}">DOCX ↓</a></div></div><textarea name="cover_text" rows="30" required>{{ doc.cover_text }}</textarea><small>Personalize the greeting and verify company-specific details.</small></section></div>
+<button class="button primary" type="submit">Save edits <span>✓</span></button></form>
+<div class="delete-row"><div><b>Finished with this application?</b><p>Delete this saved draft from your workspace.</p></div><form method="post" action="{{ url_for('delete_document', doc_id=doc.id) }}" onsubmit="return confirm('Delete this saved application? This cannot be undone.');"><button class="button danger-outline" type="submit">Delete application</button></form></div>
+{% endblock %}
