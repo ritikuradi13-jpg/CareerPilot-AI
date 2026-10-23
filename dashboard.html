@@ -1,9 +1,0 @@
-{% extends "base.html" %}
-{% block title %}My workspace — CareerPilot AI{% endblock %}
-{% block content %}
-<div class="dashboard-head"><div><span class="eyebrow">YOUR PRIVATE WORKSPACE</span><h1>Good to have you back.</h1><p class="muted">Your applications, in one place.</p></div><a class="button primary" href="{{ url_for('new_document') }}">＋ Tailor a new CV</a></div>
-<div class="stats-row"><div class="stat-card"><span class="tiny-label">SAVED APPLICATIONS</span><strong>{{ docs|length }}</strong><small>Ready when you are</small></div><div class="stat-card"><span class="tiny-label">YOUR WORKFLOW</span><strong>CV → Role</strong><small>One tailored application at a time</small></div><div class="stat-card"><span class="tiny-label">EXPORT OPTIONS</span><strong>PDF + DOCX</strong><small>Review before sending</small></div></div>
-<div class="list-heading"><h2>Saved applications</h2><span>{{ docs|length }} total</span></div>
-{% if docs %}<div class="application-list">{% for d in docs %}<a class="application-item" href="{{ url_for('edit_document', doc_id=d.id) }}"><div class="app-file">CV</div><div class="app-info"><b>{{ d.title }}</b><span>{{ d.country }}{% if d.job_title %} · {{ d.job_title }}{% endif %}</span><small>{{ d.created_at|int|datetime }}</small></div><span class="open-arrow">↗</span></a>{% endfor %}</div>
-{% else %}<div class="empty-state"><div class="empty-icon">✦</div><h3>Your next opportunity starts here.</h3><p>Upload your CV, add a job description, and choose your target country to create your first tailored application.</p><a class="button primary" href="{{ url_for('new_document') }}">Create your first application →</a></div>{% endif %}
-{% endblock %}
