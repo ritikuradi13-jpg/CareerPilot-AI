@@ -1,0 +1,16 @@
+{% extends "base.html" %} {% block title %}{{ 'Create account' if mode == 'signup' else 'Sign in' }} — CareerPilot AI{% endblock %} {% block content %}
+✦
+{{ 'YOUR CAREER WORKSPACE' if mode == 'signup' else 'WELCOME BACK' }}
+{{ 'Create your account' if mode == 'signup' else 'Sign in to CareerPilot' }}
+{{ 'Save your tailored applications and return any time.' if mode == 'signup' else 'Your saved applications are waiting for you.' }}
+
+Email address
+you@example.com
+Password
+{{ 'At least 12 characters' if mode == 'signup' else 'Your password' }}
+{{ 'Create account' if mode == 'signup' else 'Sign in' }} →
+{% if mode == 'signup' %}Already have an account? Sign in{% else %}New to CareerPilot? Create an account{% endif %}
+
+Use a unique password. Your CV can contain personal information—only upload files you are comfortable processing with the configured AI provider.
+
+{% endblock %}
