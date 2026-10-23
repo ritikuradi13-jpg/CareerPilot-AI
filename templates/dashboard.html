@@ -1,0 +1,23 @@
+{% extends "base.html" %} {% block title %}My workspace — CareerPilot AI{% endblock %} {% block content %}
+YOUR PRIVATE WORKSPACE
+Good to have you back.
+Your applications, in one place.
+
+＋ Tailor a new CV
+SAVED APPLICATIONS{{ docs|length }}Ready when you are
+YOUR WORKFLOWCV → RoleOne tailored application at a time
+EXPORT OPTIONSPDF + DOCXReview before sending
+Saved applications
+{{ docs|length }} total
+{% if docs %}
+{% for d in docs %}
+CV
+{{ d.title }}{{ d.country }}{% if d.job_title %} · {{ d.job_title }}{% endif %}{{ d.created_at|int|datetime }}
+↗{% endfor %}
+{% else %}
+✦
+Your next opportunity starts here.
+Upload your CV, add a job description, and choose your target country to create your first tailored application.
+
+Create your first application →
+{% endif %} {% endblock %}
