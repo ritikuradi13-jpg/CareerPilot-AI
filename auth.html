@@ -1,7 +1,0 @@
-{% extends "base.html" %}
-{% block title %}{{ 'Create account' if mode == 'signup' else 'Sign in' }} — CareerPilot AI{% endblock %}
-{% block content %}
-<div class="auth-wrap"><div class="auth-card"><div class="auth-icon">✦</div><span class="eyebrow">{{ 'YOUR CAREER WORKSPACE' if mode == 'signup' else 'WELCOME BACK' }}</span><h1>{{ 'Create your account' if mode == 'signup' else 'Sign in to CareerPilot' }}</h1><p class="muted">{{ 'Save your tailored applications and return any time.' if mode == 'signup' else 'Your saved applications are waiting for you.' }}</p>
-<form method="post" class="stack-form"><label>Email address<input name="email" type="email" autocomplete="email" required placeholder="you@example.com"></label><label>Password<input name="password" type="password" minlength="{{ 12 if mode == 'signup' else 1 }}" autocomplete="{{ 'new-password' if mode == 'signup' else 'current-password' }}" required placeholder="{{ 'At least 12 characters' if mode == 'signup' else 'Your password' }}"></label><button class="button primary full" type="submit">{{ 'Create account' if mode == 'signup' else 'Sign in' }} <span>→</span></button></form>
-<p class="auth-switch">{% if mode == 'signup' %}Already have an account? <a href="{{ url_for('login') }}">Sign in</a>{% else %}New to CareerPilot? <a href="{{ url_for('signup') }}">Create an account</a>{% endif %}</p><p class="fine-print">Use a unique password. Your CV can contain personal information—only upload files you are comfortable processing with the configured AI provider.</p></div></div>
-{% endblock %}
