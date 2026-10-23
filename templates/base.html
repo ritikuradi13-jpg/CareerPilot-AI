@@ -1,10 +1,43 @@
-✦ CareerPilot AI
-{% if session.get('user_id') %} My workspace
-Sign out
-{% else %} Sign inGet started {% endif %}
-{% with messages = get_flashed_messages(with_categories=true) %} {% if messages %}
-{% for category, message in messages %}
-{{ message }}
-{% endfor %}
-{% endif %} {% endwith %} {% block content %}{% endblock %}
-CareerPilot AIYour experience. Tailored truthfully.Privacy-first design
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}CareerPilot AI{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="{{ url_for('index') }}">✦ CareerPilot AI</a>
+
+            {% if session.get('user_id') %}
+                <a href="{{ url_for('dashboard') }}">My workspace</a>
+                <a href="{{ url_for('logout') }}">Sign out</a>
+            {% else %}
+                <a href="{{ url_for('login') }}">Sign in</a>
+                <a href="{{ url_for('register') }}">Get started</a>
+            {% endif %}
+        </nav>
+    </header>
+
+    <main>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="flash {{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <p>CareerPilot AI</p>
+        <p>Your experience. Tailored truthfully.</p>
+        <p>Privacy-first design</p>
+    </footer>
+</body>
+</html>
