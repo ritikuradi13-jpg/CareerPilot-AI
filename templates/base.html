@@ -14,7 +14,9 @@
 
             {% if session.get('user_id') %}
                 <a href="{{ url_for('dashboard') }}">My workspace</a>
-                <a href="{{ url_for('logout') }}">Sign out</a>
+                <form action="{{ url_for('logout') }}" method="post" style="display:inline">
+    <button type="submit">Sign out</button>
+</form>
             {% else %}
                 <a href="{{ url_for('login') }}">Sign in</a>
                 <a href="{{ url_for('register') }}">Get started</a>
