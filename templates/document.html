@@ -1,0 +1,29 @@
+{% extends "base.html" %} {% block title %}Review application — CareerPilot AI{% endblock %} {% block content %}
+← Workspace
+REVIEW & REFINE
+Your tailored application
+{{ doc.country }}{% if doc.job_title %} · {{ doc.job_title }}{% endif %}
+
+Saved draft
+✦
+Match insights & country notes
+{{ doc.match_notes }}
+
+Application name
+{{ doc.title }}
+CV
+Tailored CV
+PDF ↓DOCX ↓
+{{ doc.cv_text }}
+Edit directly here. Keep dates, credentials, and claims accurate.
+✉
+Cover letter
+PDF ↓DOCX ↓
+{{ doc.cover_text }}
+Personalize the greeting and verify company-specific details.
+Save edits ✓
+Finished with this application?
+Delete this saved draft from your workspace.
+
+Delete application
+{% endblock %}
