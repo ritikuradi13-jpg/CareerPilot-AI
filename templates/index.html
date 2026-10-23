@@ -1,38 +1,118 @@
-{% extends "base.html" %} {% block title %}CareerPilot AI — Make every application count{% endblock %} {% block content %}
-YOUR NEXT ROLE, MORE WITHIN REACH
-One CV. Every opportunity.
-Tailored to the job.
-Turn your existing CV into a focused application for the role and country you want. Generate a tailored CV and cover letter without inventing experience.
 
-Create your free workspace ↗See how it works ↓
-✓ Country-aware writing✓ Editable documents✓ PDF + Word export
-APPLICATION PREVIEW
-Product Analyst · Example Co.
-Ready to review
-CV
-Tailored CVSkills and experience aligned to the role
-PDF · DOCX
-✉
-Cover letterRole-specific and country-aware
-PDF · DOCX
-✦
-Match insightsRelevant strengths, gaps to review, and suggested edits.
-A BETTER APPLICATION WORKFLOW
-From job post to ready-to-review.
-01
-Upload your CV
-Start with PDF, DOCX or TXT. Your facts stay the source of truth.
+{% extends "base.html" %}
 
-02
-Choose the destination
-Paste a job description and select the country and preferred language.
+{% block title %}CareerPilot AI — Make every application count{% endblock %}
 
-03
-Make it yours
-Edit, save, and export your CV and cover letter as PDF or Word.
+{% block content %}
 
-Your next application starts here.
-Keep your story accurate. Make its relevance clear.
+<section class="hero">
+    <span class="eyebrow">
+        <span class="dot"></span>
+        YOUR NEXT ROLE, MORE WITHIN REACH
+    </span>
 
-Get started ↗
+    <h1>
+        One CV. Every opportunity.<br>
+        <span class="gradient-text">Tailored to the job.</span>
+    </h1>
+
+    <p class="hero-copy">
+        Turn your existing CV into a focused application for the role and country you want.
+        Generate a tailored CV and cover letter without inventing experience.
+    </p>
+
+    <div class="hero-actions">
+        <a href="{{ url_for('signup') }}" class="button primary">
+            Create your free workspace ↗
+        </a>
+        <a href="#workflow" class="text-link">
+            See how it works ↓
+        </a>
+    </div>
+
+    <div class="hero-meta">
+        <span>✓ Country-aware writing</span>
+        <span>✓ Editable documents</span>
+        <span>✓ PDF + Word export</span>
+    </div>
+
+    <div class="preview-card">
+        <div class="preview-top">
+            <div>
+                <span class="tiny-label">APPLICATION PREVIEW</span>
+                <h3>Product Analyst · Example Co.</h3>
+            </div>
+            <span class="status-pill">
+                <span class="dot"></span>
+                Ready to review
+            </span>
+        </div>
+
+        <div class="preview-body">
+            <div class="mini-doc">
+                <div class="doc-icon">CV</div>
+                <div>
+                    <b>Tailored CV</b>
+                    <small>Skills and experience aligned to the role</small>
+                </div>
+                <span class="file-type">PDF · DOCX</span>
+            </div>
+
+            <div class="mini-doc">
+                <div class="doc-icon cover">✉</div>
+                <div>
+                    <b>Cover letter</b>
+                    <small>Role-specific and country-aware</small>
+                </div>
+                <span class="file-type">PDF · DOCX</span>
+            </div>
+
+            <div class="match-box">
+                <div class="match-icon">✦</div>
+                <div>
+                    <b>Match insights</b>
+                    <small>Relevant strengths, gaps to review, and suggested edits.</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="steps-section" id="workflow">
+    <div class="section-heading">
+        <span class="eyebrow">A BETTER APPLICATION WORKFLOW</span>
+        <h2>From job post to ready-to-review.</h2>
+    </div>
+
+    <div class="steps">
+        <article>
+            <span class="step-no">01</span>
+            <h3>Upload your CV</h3>
+            <p>Start with PDF, DOCX or TXT. Your facts stay the source of truth.</p>
+        </article>
+
+        <article>
+            <span class="step-no">02</span>
+            <h3>Choose the destination</h3>
+            <p>Paste a job description and select the country and preferred language.</p>
+        </article>
+
+        <article>
+            <span class="step-no">03</span>
+            <h3>Make it yours</h3>
+            <p>Edit, save, and export your CV and cover letter as PDF or Word.</p>
+        </article>
+    </div>
+</section>
+
+<section class="bottom-cta">
+    <div>
+        <h2>Your next application starts here.</h2>
+        <p>Keep your story accurate. Make its relevance clear.</p>
+    </div>
+    <a href="{{ url_for('signup') }}" class="button light">
+        Get started ↗
+    </a>
+</section>
+
 {% endblock %}
