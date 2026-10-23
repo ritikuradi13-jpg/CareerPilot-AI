@@ -1,0 +1,10 @@
+✦ CareerPilot AI
+{% if session.get('user_id') %} My workspace
+Sign out
+{% else %} Sign inGet started {% endif %}
+{% with messages = get_flashed_messages(with_categories=true) %} {% if messages %}
+{% for category, message in messages %}
+{{ message }}
+{% endfor %}
+{% endif %} {% endwith %} {% block content %}{% endblock %}
+CareerPilot AIYour experience. Tailored truthfully.Privacy-first design
