@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,38 +7,45 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <header>
-        <nav>
-            <a href="{{ url_for('index') }}">✦ CareerPilot AI</a>
 
+    <header class="nav">
+        <a href="{{ url_for('index') }}" class="brand">
+            <span class="brand-mark">✦</span>
+            CareerPilot <span class="ai">AI</span>
+        </a>
+
+        <div class="nav-links">
             {% if session.get('user_id') %}
-                <a href="{{ url_for('dashboard') }}">My workspace</a>
-                <form action="{{ url_for('logout') }}" method="post" style="display:inline">
-    <button type="submit">Sign out</button>
-</form>
+                <a href="{{ url_for('dashboard') }}" class="nav-cta">My workspace</a>
+                <form action="{{ url_for('logout') }}" method="post">
+                    <button type="submit" class="link-button">Sign out</button>
+                </form>
             {% else %}
                 <a href="{{ url_for('login') }}">Sign in</a>
-                <a href="{{ url_for('signup') }}">Get started</a>
+                <a href="{{ url_for('signup') }}" class="nav-cta">Get started ↗</a>
             {% endif %}
-        </nav>
+        </div>
     </header>
 
-    <main>
+    <div class="page">
         {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
-                {% for category, message in messages %}
-                    <div class="flash {{ category }}">{{ message }}</div>
-                {% endfor %}
+                <div class="flashes">
+                    {% for category, message in messages %}
+                        <div class="flash {{ category }}">{{ message }}</div>
+                    {% endfor %}
+                </div>
             {% endif %}
         {% endwith %}
 
         {% block content %}{% endblock %}
-    </main>
+    </div>
 
     <footer>
-        <p>CareerPilot AI</p>
-        <p>Your experience. Tailored truthfully.</p>
-        <p>Privacy-first design</p>
+        <span>✦ CareerPilot AI</span>
+        <span>Your experience. Tailored truthfully.</span>
+        <span>Privacy-first design</span>
     </footer>
+
 </body>
 </html>
