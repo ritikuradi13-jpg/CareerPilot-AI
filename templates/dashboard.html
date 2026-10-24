@@ -1,23 +1,82 @@
-{% extends "base.html" %} {% block title %}My workspace — CareerPilot AI{% endblock %} {% block content %}
-YOUR PRIVATE WORKSPACE
-Good to have you back.
-Your applications, in one place.
 
-＋ Tailor a new CV
-SAVED APPLICATIONS{{ docs|length }}Ready when you are
-YOUR WORKFLOWCV → RoleOne tailored application at a time
-EXPORT OPTIONSPDF + DOCXReview before sending
-Saved applications
-{{ docs|length }} total
+{% extends "base.html" %}
+
+{% block title %}My workspace — CareerPilot AI{% endblock %}
+
+{% block content %}
+
+<section class="dashboard-head">
+    <div>
+        <span class="eyebrow">YOUR PRIVATE WORKSPACE</span>
+        <h1>Good to have you back.</h1>
+        <p class="muted">Your applications, in one place.</p>
+    </div>
+
+    <a href="{{ url_for('new_document') }}" class="button primary">
+        ＋ Tailor a new CV
+    </a>
+</section>
+
+<section class="stats-row">
+    <div class="stat-card">
+        <span class="tiny-label">SAVED APPLICATIONS</span>
+        <strong>{{ docs|length }}</strong>
+        <small>Ready when you are</small>
+    </div>
+
+    <div class="stat-card">
+        <span class="tiny-label">YOUR WORKFLOW</span>
+        <strong>CV → Role</strong>
+        <small>One tailored application at a time</small>
+    </div>
+
+    <div class="stat-card">
+        <span class="tiny-label">EXPORT OPTIONS</span>
+        <strong>PDF + DOCX</strong>
+        <small>Review before sending</small>
+    </div>
+</section>
+
+<section class="list-heading">
+    <h2>Saved applications</h2>
+    <span>{{ docs|length }} total</span>
+</section>
+
 {% if docs %}
-{% for d in docs %}
-CV
-{{ d.title }}{{ d.country }}{% if d.job_title %} · {{ d.job_title }}{% endif %}{{ d.created_at|int|datetime }}
-↗{% endfor %}
-{% else %}
-✦
-Your next opportunity starts here.
-Upload your CV, add a job description, and choose your target country to create your first tailored application.
+<section class="application-list">
+    {% for d in docs %}
+    <a href="{{ url_for('edit_document', document_id=d.id) }}"
+       class="application-item">
 
-Create your first application →
-{% endif %} {% endblock %}
+        <div class="app-file">CV</div>
+
+        <div class="app-info">
+            <b>{{ d.title }}</b>
+            <span>
+                {{ d.country }}
+                {% if d.job_title %} · {{ d.job_title }}{% endif %}
+            </span>
+            <small>{{ d.created_at|int|datetime }}</small>
+        </div>
+
+        <span class="open-arrow">↗</span>
+    </a>
+    {% endfor %}
+</section>
+
+{% else %}
+<section class="empty-state">
+    <div class="empty-icon">✦</div>
+    <h3>Your next opportunity starts here.</h3>
+    <p>
+        Upload your CV, add a job description, and choose your target
+        country to create your first tailored application.
+    </p>
+
+    <a href="{{ url_for('new_document') }}" class="button primary">
+        Create your first application →
+    </a>
+</section>
+{% endif %}
+
+{% endblock %}
