@@ -1,16 +1,69 @@
-{% extends "base.html" %} {% block title %}{{ 'Create account' if mode == 'signup' else 'Sign in' }} — CareerPilot AI{% endblock %} {% block content %}
-✦
-{{ 'YOUR CAREER WORKSPACE' if mode == 'signup' else 'WELCOME BACK' }}
-{{ 'Create your account' if mode == 'signup' else 'Sign in to CareerPilot' }}
-{{ 'Save your tailored applications and return any time.' if mode == 'signup' else 'Your saved applications are waiting for you.' }}
 
-Email address
-you@example.com
-Password
-{{ 'At least 12 characters' if mode == 'signup' else 'Your password' }}
-{{ 'Create account' if mode == 'signup' else 'Sign in' }} →
-{% if mode == 'signup' %}Already have an account? Sign in{% else %}New to CareerPilot? Create an account{% endif %}
+{% extends "base.html" %}
 
-Use a unique password. Your CV can contain personal information—only upload files you are comfortable processing with the configured AI provider.
+{% block title %}{{ 'Create account' if mode == 'signup' else 'Sign in' }} — CareerPilot AI{% endblock %}
 
+{% block content %}
+<section class="auth-wrap">
+    <div class="auth-card">
+        <div class="auth-icon">✦</div>
+
+        <span class="eyebrow">
+            {{ 'YOUR CAREER WORKSPACE' if mode == 'signup' else 'WELCOME BACK' }}
+        </span>
+
+        <h1>
+            {{ 'Create your account' if mode == 'signup' else 'Sign in to CareerPilot' }}
+        </h1>
+
+        <p class="muted">
+            {{ 'Save your tailored applications and return any time.' if mode == 'signup' else 'Your saved applications are waiting for you.' }}
+        </p>
+
+        <form method="POST" class="stack-form">
+            <label for="email">
+                Email address
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="you@example.com"
+                    autocomplete="email"
+                    required
+                >
+            </label>
+
+            <label for="password">
+                Password
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    placeholder="{{ 'At least 12 characters' if mode == 'signup' else 'Your password' }}"
+                    autocomplete="{{ 'new-password' if mode == 'signup' else 'current-password' }}"
+                    {% if mode == 'signup' %}minlength="12"{% endif %}
+                    required
+                >
+            </label>
+
+            <button type="submit" class="button primary full">
+                {{ 'Create account' if mode == 'signup' else 'Sign in' }} →
+            </button>
+        </form>
+
+        <p class="auth-switch">
+            {% if mode == 'signup' %}
+                Already have an account?
+                <a href="{{ url_for('login') }}">Sign in</a>
+            {% else %}
+                New to CareerPilot?
+                <a href="{{ url_for('signup') }}">Create an account</a>
+            {% endif %}
+        </p>
+
+        <p class="fine-print">
+            Use a unique password. Your CV can contain personal information—only upload files you are comfortable processing with the configured AI provider.
+        </p>
+    </div>
+</section>
 {% endblock %}
