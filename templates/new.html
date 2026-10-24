@@ -1,37 +1,124 @@
-{% extends "base.html" %} {% block title %}Tailor a CV — CareerPilot AI{% endblock %} {% block content %}
-← WorkspaceNEW APPLICATION
-Let's tailor your application.
-Add your CV, the job description, and where you want to apply. You'll be able to edit everything before downloading.
+{% extends "base.html" %}
 
-1
-Your current CV
-PDF, DOCX or TXT · Up to {{ config.MAX_CONTENT_LENGTH // (1024*1024) }} MB
+{% block title %}Tailor a CV — CareerPilot AI{% endblock %}
 
-No file chosen↑Choose your CV fileor drag and drop it hereText-based PDF works best
-2
-The job you're targeting
-Paste the complete vacancy so the AI can focus on the right details.
+{% block content %}
 
-Job title Optional
-e.g. Business Analyst
-Company Optional
-e.g. Acme Ltd.
-Job description
-Paste the job description, responsibilities, required skills, and qualifications here…
+<section class="form-page-head">
+    <a href="{{ url_for('dashboard') }}" class="back-link">← Workspace</a>
+    <span class="eyebrow">NEW APPLICATION</span>
+    <h1>Let's tailor your application.</h1>
+    <p class="muted">
+        Add your CV, the job description, and where you want to apply.
+        You'll be able to edit everything before downloading.
+    </p>
+</section>
 
-Include the actual job requirements. The AI will not claim skills or experience that your CV doesn't support.
-3
-Where are you applying?
-We adapt spelling, terminology, tone and document conventions to the destination.
+<form method="POST" enctype="multipart/form-data" class="builder-form">
 
-Target country
-{{ country }}
-Document language Optional
-e.g. English, German, French
-Choose a language if the vacancy specifies one. Translation quality should be reviewed before applying.
-◇
-Your information matters.
-Files are processed in memory and not stored as uploads. Generated documents are saved to your account. AI processing sends extracted CV text and the job description to your configured AI provider.
+    <section class="form-panel">
+        <div class="panel-heading">
+            <span class="step-number">1</span>
+            <div>
+                <h2>Your current CV</h2>
+                <p class="muted">PDF, DOCX or TXT · Up to {{ config.MAX_CONTENT_LENGTH // (1024*1024) }} MB</p>
+            </div>
+        </div>
 
-✦ Generate tailored CV + cover letter →
+        <label class="upload-zone">
+            <span class="upload-icon">↑</span>
+            <strong>Choose your CV file</strong>
+            <span class="muted">or drag and drop it here</span>
+            <small>Text-based PDF works best</small>
+            <input type="file" name="cv_file" accept=".pdf,.docx,.txt" required>
+        </label>
+    </section>
+
+    <section class="form-panel">
+        <div class="panel-heading">
+            <span class="step-number">2</span>
+            <div>
+                <h2>The job you're targeting</h2>
+                <p class="muted">Paste the complete vacancy so the AI can focus on the right details.</p>
+            </div>
+        </div>
+
+        <div class="field-grid">
+            <label>
+                Job title <span class="muted">Optional</span>
+                <input type="text" name="job_title" placeholder="e.g. Business Analyst">
+            </label>
+
+            <label>
+                Company <span class="muted">Optional</span>
+                <input type="text" name="company" placeholder="e.g. Acme Ltd.">
+            </label>
+        </div>
+
+        <label>
+            Job description
+            <textarea name="job_description" rows="8"
+                placeholder="Paste the job description, responsibilities, required skills, and qualifications here…"
+                required></textarea>
+        </label>
+
+        <p class="field-help">
+            Include the actual job requirements. The AI will not claim skills
+            or experience that your CV doesn't support.
+        </p>
+    </section>
+
+    <section class="form-panel">
+        <div class="panel-heading">
+            <span class="step-number">3</span>
+            <div>
+                <h2>Where are you applying?</h2>
+                <p class="muted">
+                    We adapt spelling, terminology, tone and document conventions to the destination.
+                </p>
+            </div>
+        </div>
+
+        <label>
+            Target country
+            <select name="country" required>
+                <option value="{{ country }}" selected>{{ country }}</option>
+                <option value="United Kingdom">United Kingdom</option>
+                <option value="United States">United States</option>
+                <option value="Canada">Canada</option>
+                <option value="Australia">Australia</option>
+                <option value="Germany">Germany</option>
+                <option value="United Arab Emirates">United Arab Emirates</option>
+                <option value="India">India</option>
+                <option value="Singapore">Singapore</option>
+                <option value="Netherlands">Netherlands</option>
+                <option value="Ireland">Ireland</option>
+            </select>
+        </label>
+
+        <label>
+            Document language <span class="muted">Optional</span>
+            <input type="text" name="language" placeholder="e.g. English, German, French">
+        </label>
+
+        <p class="field-help">
+            Choose a language if the vacancy specifies one. Translation quality should be reviewed before applying.
+        </p>
+    </section>
+
+    <div class="privacy-note">
+        <strong>◇ Your information matters.</strong>
+        <p>
+            Files are processed in memory and not stored as uploads.
+            Generated documents are saved to your account. AI processing
+            sends extracted CV text and the job description to your configured AI provider.
+        </p>
+    </div>
+
+    <button type="submit" class="button primary generate-button">
+        ✦ Generate tailored CV + cover letter →
+    </button>
+
+</form>
+
 {% endblock %}
